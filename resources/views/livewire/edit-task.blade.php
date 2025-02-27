@@ -37,10 +37,10 @@
           </div>
 
           <div class="flex justify-between">
-              <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+              <button type="submit" class="bg-lime-400 text-white px-4 py-2 rounded hover:bg-lime-500">
                   Guardar Cambios
               </button>
-              <button type="button" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+              <button type="button" class="bg-red-400 text-white px-4 py-2 rounded hover:bg-red-500"
                   onclick="document.getElementById('modal-edit').classList.add('hidden')">
                   Cancelar
               </button>

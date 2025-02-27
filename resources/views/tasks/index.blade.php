@@ -3,43 +3,39 @@
 @section('content')
     <div class="container mx-auto p-6">
         <h1 class="text-2xl font-bold mb-4">Lista de Tareas</h1>
-        <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 mb-4"
+        <button class="bg-lime-400 hover:bg-lime-500 text-white font-semibold px-4 py-2 rounded mb-4"
             onclick="document.getElementById('modal-create').classList.remove('hidden')">
             Crear Tarea
         </button>
 
         <table class="w-full border-collapse border border-gray-300 shadow-md">
-            <thead class="bg-gray-200">
+            <thead class="bg-lime-200">
                 <tr>
-                    <th class="border border-gray-300 px-4 py-2">Nombre</th>
-                    <th class="border border-gray-300 px-4 py-2">Descripción</th>
-                    <th class="border border-gray-300 px-4 py-2">Estado</th>
-                    <th class="border border-gray-300 px-4 py-2">Fecha de Creación</th>
-                    <th class="border border-gray-300 px-4 py-2">Fecha de Vencimiento</th>
-                    <th class="border border-gray-300 px-4 py-2">Acciones</th>
+                    <th class="border border-gray-50 px-4 py-2">Nombre</th>
+                    <th class="border border-gray-50 px-4 py-2">Descripción</th>
+                    <th class="border border-gray-50 px-4 py-2">Estado</th>
+                    <th class="border border-gray-50 px-4 py-2">Fecha de Vencimiento</th>
+                    <th class="border border-gray-50 px-4 py-2">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($tasks as $task)
                     <tr class="bg-white border-b border-gray-300 hover:bg-gray-100 cursor-pointer">
-                        <td class="border border-gray-300 px-4 py-2" onclick="openEditModal({{ $task }})">
+                        <td class="border border-gray-50 px-4 py-2" onclick="openEditModal({{ $task }})">
                             {{ $task->title }}
                         </td>
-                        <td class="border border-gray-300 px-4 py-2" onclick="openEditModal({{ $task }})">
+                        <td class="border border-gray-50 px-4 py-2" onclick="openEditModal({{ $task }})">
                             {{ $task->description }}
                         </td>
-                        <td class="border border-gray-300 px-4 py-2 cursor-pointer text-center 
-                            {{ $task->status == 'pendiente' ? 'bg-amber-200' : ($task->status == 'vencida' ? 'bg-red-200' : ($task->status == 'completada' ? 'bg-green-200' : '')) }}"
+                        <td class="border border-gray-50 px-4 py-2 cursor-pointer text-center 
+                            {{ $task->status == 'pendiente' ? 'bg-yellow-200' : ($task->status == 'vencida' ? 'bg-red-200' : ($task->status == 'completada' ? 'bg-green-200' : '')) }}"
                             onclick="openEditModal({{ $task }})">
                             {{ ucfirst($task->status) }}
                         </td>
-                        <td class="border border-gray-300 px-4 py-2" onclick="openEditModal({{ $task }})">
-                            {{ $task->created_at->format('d/m/Y') }}
-                        </td>
-                        <td class="border border-gray-300 px-4 py-2" onclick="openEditModal({{ $task }})">
+                        <td class="border border-gray-50 px-4 py-2 text-center" onclick="openEditModal({{ $task }})">
                             {{ $task->due_date ? \Carbon\Carbon::parse($task->due_date)->format('d/m/Y') : 'Sin fecha' }}
                         </td>
-                        <td class="border border-gray-300 px-4 py-2 bg-red-200 cursor-pointer text-center hover:bg-red-300"
+                        <td class="border border-gray-50 px-4 py-2 bg-red-400 cursor-pointer text-center hover:bg-red-500"
                             onclick="showDeleteModal({{ $task->id }})">
                             Eliminar
                         </td>

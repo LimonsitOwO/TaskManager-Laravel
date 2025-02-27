@@ -23,10 +23,10 @@
           </div>
 
           <div class="flex justify-between">
-              <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+              <button type="submit" class="bg-lime-400 text-white px-4 py-2 rounded hover:bg-lime-500">
                   Guardar
               </button>
-              <button type="button" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+              <button type="button" class="bg-red-400 text-white px-4 py-2 rounded hover:bg-red-500"
                   onclick="document.getElementById('modal-create').classList.add('hidden')">
                   Cancelar
               </button>
