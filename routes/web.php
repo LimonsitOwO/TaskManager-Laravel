@@ -2,10 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
+use App\Models\Task;
 
-Route::get('/my-task', function () {
-  return view('task.my-task');
-});
-Route::get('/create-task', function () {
-  return view('task.create-task');
+Route::get('/', function () {
+  $tasks = Task::all();
+  return view('tasks.index', compact('tasks'));
 });

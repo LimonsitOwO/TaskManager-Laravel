@@ -9,19 +9,19 @@ class TaskController extends Controller
 {
   public function createTask(Request $request)
   {
-    $task = new Task; 
-  
+    $task = new Task;
+
     $task->title = $request->title;
     $task->description = $request->description;
     $task->due_date = $request->due_date;
-    $task->status = $request->status;
+    $task->status = $request->status ?? 'pendiente';
 
     $task->save();
-    return $task;
+    return redirect('/');
   }
 
   public function findAllTask(Request $request)
-  { 
+  {
     return Task::all();
   }
 
@@ -38,13 +38,13 @@ class TaskController extends Controller
     $task->due_date = $request->due_date;
     $task->status = $request->status;
     $task->save();
-    return $task;
+    return redirect('/');
   }
 
   public function deleteTask(Request $request, $id)
   {
     $task = Task::find($id);
     $task->delete();
-    return $task;
+    return redirect('/');
   }
 }
