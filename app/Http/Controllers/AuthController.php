@@ -23,7 +23,10 @@ class AuthController extends Controller
       'password' => Hash::make($request->password)
     ]);
 
-    return response()->json(['message' => 'Usuario creado correctamente'], 201);
+    return response()->json([
+      'message' => 'Usuario registrado correctamente',
+      'user' => $user
+    ], 201);
   }
 
   public function login(Request $request)
@@ -32,22 +35,27 @@ class AuthController extends Controller
       'email' => 'required|email',
       'password' => 'required|string'
     ]);
-
     $user = User::where('email', $request->email)->first();
-
     if (!$user || !Hash::check($request->password, $user->password)) {
-      return response()->json(['message' => 'Credenciales incorrectas'], 401);
+      return response()->json([
+        'message' => 'Credenciales incorrectas'
+      ], 401);
     }
-
-    // Generar un token manual simple
     $token = bin2hex(random_bytes(40));
-
     $user->remember_token = $token;
     $user->save();
-
     return response()->json([
       'message' => 'Login exitoso',
+      'user' => $user,
       'token' => $token
-    ]);
+    ], 200);
   }
+
+  public function profile(Request $request)
+    {
+        $user = $request->attributes->get('user');
+
+        return response()->json($user);
+    }
+
 }
